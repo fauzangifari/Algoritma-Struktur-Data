@@ -1,4 +1,3 @@
-#merge short
 import random
 
 def merge_sort(list):
