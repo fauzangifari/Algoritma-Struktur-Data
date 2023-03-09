@@ -7,6 +7,9 @@ def jump_search(arr, item):
             for j in range(len(arr[i])): # lakukan pencarian secara linear
                 if arr[i][j] == item: # jika elemen ditemukan
                     return i, j # kembalikan indeks list dan indeks elemen
+        else:
+            if arr[i] == item:
+                return i
     while arr[min(step, n) - 1] < item: # jika elemen di indeks tengah lebih kecil dari elemen yang dicari
         prev = step # indeks awal akan diubah menjadi indeks tengah
         step += int(n ** 0.5) # indeks tengah akan diubah menjadi indeks awal + indeks tengah
@@ -25,12 +28,17 @@ def main():
     item = str.capitalize(input("Masukkan nama yang ingin dicari: ")) # elemen yang dicari
 
     result = jump_search(arr, item) # simpan hasil pencarian
+
     if result == -1: # jika elemen tidak ditemukan
-        print("Nama tidak ada di dalam list.")
-    else: # jika elemen ditemukan
-        if result[1] == -1: # elemen ditemukan pada indeks, tetapi bukan di dalam sublist
-            print(f"Nama ditemukan pada indeks {result[0]}.")
-        else: # elemen ditemukan pada sublist
-            print(f"Nama ditemukan pada indeks {result[0]}, dengan kolom {result[1]}")
+        print("Nama tidak ada di dalam arr")
+
+    elif type(result) == int: # jika elemen ditemukan
+        if type(arr[result]) == list: # jika elemen berupa list
+            print("Nama ditemukan pada indeks", result)
+        else: # jika elemen tidak berupa list
+            print("Nama ditemukan pada indeks", result)
+
+    else: # jika elemen ditemukan dan berada di dalam list yang ada di dalam list
+        print("Nama ditemukan pada indeks", result[0], "dengan kolom", result[1])
 
 main()
