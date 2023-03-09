@@ -1,33 +1,33 @@
 def jump_search(arr, item):
-    n = len(arr)
-    step = int(n ** 0.5)
-    prev = 0
-    for i in range(len(arr)):
-        if type(arr[i]) == list:
-            for j in range(len(arr[i])):
-                if arr[i][j] == item:
-                    return i, j
-    while arr[min(step, n) - 1] < item:
-        prev = step
-        step += int(n ** 0.5)
-        if prev >= n:
-            return -1
-    while arr[prev] < item:
-        prev += 1
-        if prev == min(step, n):
-            return -1
-    if arr[prev] == item:
-        return prev
-    return -1
+    n = len(arr) # berapa banyak elemen di dalam list
+    step = int(n ** 0.5) # berapa banyak elemen yang akan dilewati
+    prev = 0 # indeks awal
+    for i in range(len(arr)): # lakukan pencarian secara linear
+        if type(arr[i]) == list: # jika elemen berupa list
+            for j in range(len(arr[i])): # lakukan pencarian secara linear
+                if arr[i][j] == item: # jika elemen ditemukan
+                    return i, j # kembalikan indeks list dan indeks elemen
+    while arr[min(step, n) - 1] < item: # jika elemen di indeks tengah lebih kecil dari elemen yang dicari
+        prev = step # indeks awal akan diubah menjadi indeks tengah
+        step += int(n ** 0.5) # indeks tengah akan diubah menjadi indeks awal + indeks tengah
+        if prev >= n: # jika indeks awal lebih besar dari panjang list
+            return -1 # kembalikan -1
+    while arr[prev] < item: # jika elemen di indeks tengah lebih besar dari elemen yang dicari
+        prev += 1 # indeks awal akan diubah menjadi indeks awal + 1
+        if prev == min(step, n): # jika indeks awal sama dengan indeks tengah
+            return -1 # kembalikan -1
+    if arr[prev] == item: # jika elemen di indeks tengah sama dengan elemen yang dicari
+        return prev # kembalikan indeks list dan -1
+    return -1 # kembalikan -1
 
 def main():
-    arr = ["Arsel", "Avivah", "Daiva", ["Wahyu", "Wibi"]]
-    item = str.capitalize(input("Masukkan nama yang ingin dicari: "))
+    arr = ["Arsel", "Avivah", "Daiva", ["Wahyu", "Wibi"]] # list yang akan dicari
+    item = str.capitalize(input("Masukkan nama yang ingin dicari: ")) # elemen yang dicari
 
-    result = jump_search(arr, item)
-    if result == -1:
+    result = jump_search(arr, item) # simpan hasil pencarian
+    if result == -1: # jika elemen tidak ditemukan
         print("Nama tidak ada di dalam list.")
-    else:
+    else: # jika elemen ditemukan
         if result[1] == -1: # elemen ditemukan pada indeks, tetapi bukan di dalam sublist
             print(f"Nama ditemukan pada indeks {result[0]}.")
         else: # elemen ditemukan pada sublist

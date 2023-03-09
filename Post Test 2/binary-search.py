@@ -26,9 +26,9 @@ def main():
     if result == -1: # jika elemen tidak ditemukan
         print("Nama tidak ada di dalam list.")
     else: # jika elemen ditemukan
-        if result[1] == -1:
+        if result[1] == -1: # jika elemen ditemukan dan tidak berada di dalam list yang ada di dalam list
             print(f"Nama ditemukan pada indeks {result[0]}.")
-        else:
+        else: # jika elemen ditemukan dan berada di dalam list yang ada di dalam list
             print(f"Nama ditemukan pada indeks {result[0]}, kolom {result[1]}")
 
 main()
