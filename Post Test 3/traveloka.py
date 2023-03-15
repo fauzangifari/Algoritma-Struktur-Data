@@ -34,25 +34,18 @@ class LinkedList:
             self.tail = self.tail.nextFlight
         self.history.append(('Add', (airline, origin, destination, departureTime, arrivalTime, price)))
 
-
     def printFlight(self):
         temp = self.head
-        t = PrettyTable(['No.', 'Airline', 'Origin', 'Destination', 'Departure Time', 'Arrival Time', 'Price'])
+
+        t = PrettyTable(['No.', 'Pesawat', 'Asal', 'Tujuan', 'Waktu Keberangkatan', 'Waktu Kedatangan', 'Harga'])
         number = 1
         while temp != None:
+            t.title = 'Daftar Tiket Pesawat'
             t.add_row(
                 [number, temp.airline, temp.origin, temp.destination, temp.departureTime, temp.arrivalTime, temp.price])
             number += 1
             temp = temp.nextFlight
         print(t)
-
-    def searchFlight(self, airline, origin, destination, departureTime, arrivalTime, price):
-        temp = self.head
-        while temp != None:
-            if temp.airline == airline and temp.origin == origin and temp.destination == destination and temp.departureTime == departureTime and temp.arrivalTime == arrivalTime and temp.price == price:
-                return True
-            temp = temp.nextFlight
-        return False
 
     def deleteFlight(self, number):
         temp = self.head
@@ -70,12 +63,14 @@ class LinkedList:
             self.head = temp.nextFlight
         else:
             prev.nextFlight = temp.nextFlight
-        self.history.append(('Delete', (temp.airline, temp.origin, temp.destination, temp.departureTime, temp.arrivalTime, temp.price)))
+        self.history.append(
+            ('Delete', (temp.airline, temp.origin, temp.destination, temp.departureTime, temp.arrivalTime, temp.price)))
 
     def paginate(self, page, size):
         temp = self.head
-        t = PrettyTable(['No.', 'Airline', 'Origin', 'Destination', 'Departure Time', 'Arrival Time', 'Price'])
+        t = PrettyTable(['No.', 'Pesawat', 'Asal', 'Tujuan', 'Waktu Keberangkatan', 'Waktu Kedatangan', 'Harga'])
         number = (page - 1) * size + 1
+        t.title = f'Halaman {page}'
         count = 0
         while temp != None:
             if count >= (page - 1) * size and count < page * size:
@@ -87,9 +82,11 @@ class LinkedList:
         print(t)
 
     def historyAddDelete(self):
-        t = PrettyTable(['No.', 'Action', 'Airline', 'Origin', 'Destination', 'Departure Time', 'Arrival Time', 'Price'])
+        t = PrettyTable(
+            ['No.', 'Action', 'Pesawat', 'Asal', 'Tujuan', 'Waktu Keberangkatan', 'Waktu Kedatangan', 'Harga'])
         number = 1
         for i in self.history:
+            t.title = 'Riwayat Add/Delete'
             if i[0] == 'Add':
                 t.add_row([number, i[0], i[1][0], i[1][1], i[1][2], i[1][3], i[1][4], i[1][5]])
             elif i[0] == 'Delete':
@@ -113,42 +110,52 @@ def main():
     flight.addFlight('Citilink', 'Jakarta', 'Malang', '12:25', '13:55', 1350000)
     flight.addFlight('Lion Air', 'Medan', 'Surabaya', '05:35', '11:05', 1440000)
 
-
     while True:
         os.system('cls')
-        print('''
-                1. Add Flight
-                2. Delete Flight
-                3. Print Flight
-                4. Paginate Flight
-                5. History add/delete
-                6. Exit
-                ''')
-        choice = int(input('Choice : '))
+        choice = int(input('''
+            ========================================
+            |          M E N U   P I L I H         |
+            ========================================
+            |   > 1. Tambah Tiket Pesawat          |
+            |   > 2. Hapus Tiket Pesawat           |
+            |   > 3. Halaman Tiket Pesawat         |
+            |   > 4. Riwayat Add/Delete            |
+            |   > 5. Exit                          |
+            ========================================
+            Pilih nomor : '''))
 
         if choice == 1:
-            airline = input('Airline : ')
-            origin = input('Origin : ')
-            destination = input('Destination : ')
-            departureTime = input('Departure Time : ')
-            arrivalTime = input('Arrival Time : ')
-            price = int(input('Price : '))
+            airline = str(input('Nama Pesawat : '))
+            origin = str(input('Asal : '))
+            destination = str(input('Tujuan : '))
+            departureTime = str(input('Waktu Keberangkatan : '))
+            arrivalTime = str(input('Waktu Kedatangan : '))
+            price = int(input('Harga : '))
             flight.addFlight(airline, origin, destination, departureTime, arrivalTime, price)
+
         elif choice == 2:
             flight.printFlight()
-            number = int(input('Number : '))
+            number = int(input('Nomor : '))
             flight.deleteFlight(number)
+
         elif choice == 3:
-            flight.printFlight()
+            flight.paginate(1, 5)
+            yn = str(input('Lanjut ke halaman selanjutnya? (y/n) : '))
+            while yn == 'y':
+                page = int(input('Halaman : '))
+                flight.paginate(page, 5)
+                yn = str(input('Lanjut ke halaman selanjutnya? (y/n) : '))
+            else:
+                continue
+
         elif choice == 4:
-            page = int(input('Page : '))
-            flight.paginate(page, 5)
-        elif choice == 5:
             flight.historyAddDelete()
-        elif choice == 6:
+
+        elif choice == 5:
             break
+
         else:
-            print('Choice not found')
+            print('Pilihan tidak tersedia')
 
 
 main()
