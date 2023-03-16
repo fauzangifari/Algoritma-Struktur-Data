@@ -1,5 +1,5 @@
-#Dokumentasi
-##Pendahuluan
+# Dokumentasi
+## Pendahuluan
 
 Linked List adalah salah satu struktur data yang sangat berguna dalam pemrograman, termasuk dalam bidang travel dan transportasi. Traveloka, sebagai salah satu perusahaan travel terkemuka di Indonesia, menggunakan linked list untuk menyimpan informasi penerbangan seperti maskapai, asal, tujuan, waktu keberangkatan dan waktu kedatangan, tanggal keberangkatan, harga, dan lain sebagainya.
 
@@ -7,7 +7,7 @@ Pada aplikasi Traveloka, linked list digunakan untuk menyimpan data penerbangan 
 
 Pada linked list Traveloka, setiap node berisi informasi tentang satu penerbangan, seperti maskapai, asal, tujuan, waktu keberangkatan dan waktu kedatangan, tanggal keberangkatan, harga, dan juga pointer yang menunjuk ke node selanjutnya. Dengan menggunakan pointer ini, aplikasi Traveloka dapat dengan mudah mengakses setiap node pada linked list untuk menampilkan informasi penerbangan kepada pengguna.
 
-##Penjelasan Source Code
+## Penjelasan Source Code
 
 ![image](https://user-images.githubusercontent.com/77602702/225687233-ec0c16d1-208c-47e9-9ecf-e607775081d0.png)
 - **import os** digunakan untuk mengimpor modul os, yang menyediakan berbagai fungsi untuk berinteraksi dengan sistem operasi. Modul ini digunakan pada bagian kode selanjutnya untuk membersihkan layar terminal.
