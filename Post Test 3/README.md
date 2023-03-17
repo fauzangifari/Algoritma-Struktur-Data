@@ -51,3 +51,20 @@ Lalu terdapat lagi sebauh method bernama deleteFlight. Method ini digunakan untu
 - Argumen number digunakan untuk menunjukkan nomor urutan elemen yang akan dihapus. Kemudian, metode deleteFlight akan mencari elemen dengan nomor urutan tersebut. Apabila elemen yang dicari tidak ditemukan, maka metode akan langsung berhenti.
 - Jika elemen yang ditemukan merupakan elemen pertama, maka pointer head akan diubah menjadi elemen selanjutnya. Sedangkan jika elemen yang ditemukan merupakan elemen lainnya, maka pointer nextFlight dari elemen sebelumnya akan dihubungkan dengan elemen setelahnya.
 - Setelah elemen berhasil dihapus, maka informasi mengenai elemen tersebut akan ditambahkan ke dalam atribut history.
+
+![image](https://user-images.githubusercontent.com/77602702/225904762-d3f82717-b54b-46ad-8d81-ae739bb215d8.png)
+Lalu terdapat lagi sebuah method bernama paginate. Method ini akan menampilkan data penerbangan sesuai dengan halaman yang ditentukan dan jumlah data yang ingin ditampilkan pada setiap halaman.
+- Parameter page dan size digunakan untuk menentukan halaman dan jumlah data yang ingin ditampilkan pada setiap halaman.
+- temp adalah sebuah variabel yang digunakan untuk menunjuk pada node pertama dari linked list yang berisi data penerbangan.
+- Variabel t digunakan untuk membuat objek dari kelas PrettyTable dan mendefinisikan header atau kolom-kolom tabel.
+- Variabel number digunakan untuk menentukan nomor urut dari setiap data penerbangan yang ditampilkan pada tabel.
+- count adalah sebuah variabel penghitung yang digunakan untuk menghitung jumlah data penerbangan yang telah dilooping.
+
+Pada saat dilakukan looping, data penerbangan yang sesuai dengan halaman dan jumlah data yang ditentukan akan ditambahkan pada tabel menggunakan method add_row(). Setiap kali data penerbangan berhasil ditambahkan ke dalam tabel, variabel number akan ditambahkan 1 untuk menentukan nomor urutan dari data penerbangan pada halaman selanjutnya. Setelah semua data penerbangan pada halaman yang ditentukan telah ditampilkan, tabel akan dicetak ke layar menggunakan method print().
+
+![image](https://user-images.githubusercontent.com/77602702/225908243-c4b2bc61-d70a-4359-95b7-cbc5597ac721.png)
+Lalu terdapat lagi sebuah method bernama historyAddDelete. Method ini untuk menampilkan riwayat penambahan atau penghapusan data penerbangan yang dilakukan sebelumnya. Fungsi ini menggunakan modul PrettyTable untuk menampilkan data secara rapi dan terstruktur.
+- Fungsi ini membuat objek PrettyTable dengan kolom yang sesuai dengan atribut penerbangan seperti nomor, pesawat, asal, tujuan, waktu keberangkatan, waktu kedatangan, tanggal keberangkatan, dan harga. Selanjutnya, variabel number diinisialisasi dengan nilai 0.
+- Fungsi ini melakukan iterasi pada setiap item pada atribut history dengan menggunakan perulangan for. Di dalam perulangan, fungsi menentukan judul tabel menjadi "Riwayat Add/Delete" dan menambahkan baris pada tabel sesuai dengan tindakan yang dilakukan pada setiap item.
+- Jika tindakan pada item adalah "Add", maka fungsi menambahkan baris pada tabel dengan menggunakan data pada item sebagai parameter input. Jika tindakan pada item adalah "Delete", fungsi menambahkan baris pada tabel dengan menggunakan data pada item sebagai parameter input.
+- Setiap kali sebuah baris ditambahkan pada tabel, nilai number akan ditambahkan dengan 1. Setelah semua item pada atribut history selesai diiterasi, tabel akan dicetak pada layar menggunakan perintah print(t).
