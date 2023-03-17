@@ -4,7 +4,7 @@ from prettytable import PrettyTable
 
 os.system('cls')
 
-
+# Class Flight berfungsi untuk mendefinisikan objek tiket pesawat.
 class Flight:
     def __init__(self, airline, origin, destination, departureTime, arrivalTime, dateTime, price, nextFlight=None):
         self.airline = airline
@@ -20,10 +20,12 @@ class Flight:
         return f"{self.airline} {self.origin} {self.destination} {self.departureTime} {self.arrivalTime} {self.dateTime} {self.price}"
 
 
+# Class LinkedList berfungsi untuk mendefinisikan objek list yang berisi objek tiket pesawat.
 class LinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
+        self.prev = None
         self.history = []
 
     def addFlight(self, airline, origin, destination, departureTime, arrivalTime, dateTime, price):
@@ -51,7 +53,7 @@ class LinkedList:
 
     def deleteFlight(self, number):
         temp = self.head
-        prev = None
+        prev = self.prev
         count = 1
         while temp and count != number:
             prev = temp
@@ -127,7 +129,7 @@ def main():
 
         if choice == 1:
             os.system('cls')
-            airline = str(input('Nama Pesawat : '))
+            airline = str(input('Nama Maskapai : '))
             origin = str(input('Asal : '))
             destination = str(input('Tujuan : '))
             departureTime = str(input('Waktu Keberangkatan : '))
@@ -142,7 +144,7 @@ def main():
         elif choice == 2:
             os.system('cls')
             flight.printFlight()
-            number = int(input('Nomor : '))
+            number = int(input('Nomor yang ingin dihapus : '))
             flight.deleteFlight(number)
             print('Tiket berhasil dihapus')
             time.sleep(2)

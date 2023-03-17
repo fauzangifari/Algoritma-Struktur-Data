@@ -19,7 +19,6 @@ def fibonacci_search(arr, item):
             index = i
         elif arr[i] > item: # jika elemen di indeks tengah lebih besar dari elemen yang dicari
             fib = fib2
-
             fib1 = fib1 - fib2
             fib2 = fib - fib1
         else: # jika elemen di indeks tengah sama dengan elemen yang dicari
